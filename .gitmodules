@@ -1,0 +1,3 @@
+[submodule "storymem_src"]
+	path = storymem_src
+	url = https://github.com/Kevin-thu/StoryMem.git

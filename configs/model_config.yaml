@@ -1,0 +1,96 @@
+# StoryMem Model Configuration
+
+# Model repository information
+models:
+  t2v:
+    name: "Wan2.2-T2V-A14B"
+    repo_id: "Wan-AI/Wan2.2-T2V-A14B"
+    description: "Text-to-Video model with 14B parameters and MoE architecture"
+    size_gb: 25
+
+  i2v:
+    name: "Wan2.2-I2V-A14B"
+    repo_id: "Wan-AI/Wan2.2-I2V-A14B"
+    description: "Image-to-Video model with 14B parameters"
+    size_gb: 25
+
+  m2v:
+    name: "StoryMem"
+    repo_id: "Kevin-thu/StoryMem"
+    description: "Memory-conditioned video generation LoRA weights"
+    size_gb: 2
+    lora_types:
+      - "MI2V"  # Memory + first frame Image
+      - "MM2V"  # Memory + Motion frames
+
+# Default generation parameters
+generation:
+  default_resolution:
+    width: 832
+    height: 480
+
+  default_frames: 25  # Must be 4n+1 format
+  valid_frames: [9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121]
+
+  default_steps: 50
+  default_cfg_scale: 7.5
+  default_seed: 0
+
+  # Memory management
+  default_memory_size: 10
+  default_fixed_frames: 3
+
+  # Keyframe extraction
+  default_keyframes_per_shot: 3
+  default_similarity_threshold: 0.9
+
+# Device and optimization settings
+compute:
+  default_device: "auto"  # auto, cuda, cpu
+  enable_offload: true
+  use_fsdp: false
+
+  # VRAM requirements
+  vram_requirements:
+    full_models: 80  # GB
+    with_offload: 24  # GB minimum
+    with_quantization: 12  # GB minimum
+
+  # Optimization options
+  optimizations:
+    flash_attention: true  # Requires flash-attn package
+    xformers: true  # Requires xformers package
+    torch_compile: false  # PyTorch 2.0+ compilation
+    channels_last: true  # Memory format optimization
+
+# Paths (relative to ComfyUI root or absolute)
+paths:
+  models_dir: "models/storymem"
+  output_dir: "output/storymem"
+  temp_dir: "temp/storymem"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: null  # null for no file logging, or path to log file
+
+# Advanced settings
+advanced:
+  # Frame sampling for keyframe extraction
+  keyframe_sampling_rate: 1  # Process every Nth frame
+
+  # Quality filtering for keyframes
+  use_hpsv3_filtering: true
+  use_clip_filtering: true
+
+  # Video encoding
+  video_codec: "h264"
+  video_quality: 23  # CRF value, lower = better quality
+
+  # Memory optimization
+  clear_cache_after_generation: true
+  gradient_checkpointing: false
+
+  # Generation behavior
+  allow_cpu_generation: false  # Allow generation on CPU (very slow)
+  timeout_seconds: 3600  # Max generation time per shot

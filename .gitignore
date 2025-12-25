@@ -1,0 +1,101 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Models (too large for git)
+models/
+*.safetensors
+*.bin
+*.pth
+*.ckpt
+*.pt
+
+# Generated files
+*.log
+*.out
+*.err
+
+# Test files
+test_output/
+temp/
+tmp/
+
+# ComfyUI specific
+output/
+input/
+temp/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Video files (can be large)
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Image files (if testing)
+*.jpg
+*.jpeg
+*.png
+*.gif
+!docs/*.png
+!examples/*.png
+
+# Cache
+.cache/
+*.cache
+
+# Coverage
+.coverage
+htmlcov/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Tensorboard
+runs/
+logs/
+
+# Backup files
+*.bak
+*.backup
