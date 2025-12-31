@@ -29,7 +29,7 @@ Documentation = "https://github.com/anveshane/Comfyui_StoryMem/wiki"
 "Bug Tracker" = "https://github.com/anveshane/Comfyui_StoryMem/issues"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "anveshane"
 DisplayName = "Comfyui_StoryMem"
 Icon = ""
 includes = [] 
