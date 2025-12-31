@@ -100,7 +100,17 @@ class TestImports(unittest.TestCase):
     def test_decord_optional_import(self):
         """Test that decord is optional and modules load without it."""
         try:
-            # Import modules that use decord
+            # Try to import storymem_src modules
+            # These have heavy dependencies (cv2, einops, clip, etc.) that may not be installed
+            import sys
+            from pathlib import Path
+
+            # Add storymem_src to path if not already there
+            storymem_path = Path(__file__).parent.parent / "storymem_src"
+            if str(storymem_path) not in sys.path:
+                sys.path.insert(0, str(storymem_path))
+
+            # Try importing the modules that use decord
             from storymem_src import extract_keyframes
             from storymem_src.wan import memory2video
 
@@ -117,12 +127,14 @@ class TestImports(unittest.TestCase):
             # The modules should import successfully regardless
             self.assertTrue(True, "Modules with decord imports loaded successfully")
 
-        except ImportError as e:
-            if "decord" in str(e).lower():
+        except (ImportError, ModuleNotFoundError) as e:
+            error_msg = str(e).lower()
+            if "decord" in error_msg:
                 self.fail(f"decord should be optional but import failed: {e}")
             else:
-                # Other dependencies might be missing, that's ok for this test
-                self.skipTest(f"Other dependencies not available: {e}")
+                # Other dependencies might be missing (cv2, einops, clip, etc.)
+                # This is expected in minimal CI environments
+                self.skipTest(f"storymem_src dependencies not available: {e}")
 
 
 class TestModuleStructure(unittest.TestCase):
