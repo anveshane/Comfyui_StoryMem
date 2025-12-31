@@ -13,7 +13,7 @@ accelerate>=1.1.1
 # Video processing
 opencv-python>=4.9.0.80
 imageio[ffmpeg]
-decord
+# decord  # Optional: Not available on macOS ARM64 with Python 3.12+, fallback to torchvision/opencv
 av
 
 # Utilities

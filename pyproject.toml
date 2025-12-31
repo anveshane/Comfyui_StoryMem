@@ -20,7 +20,33 @@ license = {file = "LICENSE"}
 #     "Environment :: GPU :: Apple Metal",    # Apple Metal support
 # ]
 
-dependencies = ["# Core dependencies", "torch>=2.4.0", "torchvision>=0.19.0", "numpy>=1.23.5,<2", "# Diffusion models", "diffusers==0.32.2", "transformers==4.45.2", "peft==0.14.0", "tokenizers>=0.20.3", "accelerate>=1.1.1", "# Video processing", "opencv-python>=4.9.0.80", "imageio[ffmpeg]", "decord", "av", "# Utilities", "matplotlib", "tensorboard", "typing_extensions", "tqdm", "easydict", "json5", "ftfy", "protobuf", "click", "pillow", "# Keyframe extraction (CLIP will be handled separately)", "# Note: CLIP requires manual installation or will be wrapped", "# git+https://github.com/openai/CLIP.git", "# HuggingFace CLI for model downloads", "huggingface_hub[cli]>=0.20.0", "# Optional performance improvements (uncomment if needed)", "# flash-attn  # Requires CUDA and specific build environment", "# xformers    # Memory-efficient attention", "# StoryMem source - will be added as git submodule", "# Users should clone StoryMem separately or we'll handle it programmatically"]
+dependencies = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+    "numpy>=1.23.5,<2",
+    "diffusers==0.32.2",
+    "transformers==4.45.2",
+    "peft==0.14.0",
+    "tokenizers>=0.20.3",
+    "accelerate>=1.1.1",
+    "opencv-python>=4.9.0.80",
+    "imageio[ffmpeg]",
+    "av",
+    "matplotlib",
+    "tensorboard",
+    "typing_extensions",
+    "tqdm",
+    "easydict",
+    "json5",
+    "ftfy",
+    "protobuf",
+    "click",
+    "pillow",
+    "huggingface_hub[cli]>=0.20.0",
+]
+
+[project.optional-dependencies]
+decord = ["decord"]  # Optional: Not available on macOS ARM64 with Python 3.12+
 
 [project.urls]
 Repository = "https://github.com/anveshane/Comfyui_StoryMem"

@@ -140,6 +140,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-12-31
+
+### Fixed
+- **Made decord dependency optional** (#3)
+  - `decord` package is not available on macOS ARM64 with Python 3.12+
+  - Wrapped `decord` imports in try-except blocks in `extract_keyframes.py` and `memory2video.py`
+  - Added fallback to opencv-python for video reading when decord is unavailable
+  - Updated `requirements.txt` to comment out decord (optional)
+  - Updated `pyproject.toml` to list decord as optional dependency
+  - Added HAS_DECORD flags to track availability
+  - All modules now import successfully without decord installed
+
+### Changed
+- **Improved video reading fallback**
+  - Added `_read_video_opencv()` function in `extract_keyframes.py`
+  - Added opencv fallback in `memory2video.py` for motion frames
+  - Video reading now works on all platforms even without decord
+
+### Testing
+- Added `test_decord_optional_import()` test case
+- Verified imports work without decord on macOS ARM64
+
+## [Unreleased]
+
 ### Planned Features
 - CLIP-based intelligent keyframe extraction
 - HPSv3 quality filtering for keyframes
