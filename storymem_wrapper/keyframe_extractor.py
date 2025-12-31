@@ -9,7 +9,7 @@ Extracts keyframes from video using:
 
 import torch
 import numpy as np
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict, Any
 import logging
 
 from .tensor_utils import extract_frames_from_video

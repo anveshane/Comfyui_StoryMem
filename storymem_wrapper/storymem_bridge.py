@@ -22,7 +22,7 @@ try:
     # Import StoryMem/Wan modules
     from wan.text2video import WanT2V
     from wan.memory2video import WanM2V
-    from wan.textimage2video import WanMI2V
+    from wan.textimage2video import WanTI2V
     from wan.configs import WAN_CONFIGS, SIZE_CONFIGS
     from wan.utils.utils import save_video
     STORYMEM_AVAILABLE = True
@@ -171,7 +171,7 @@ class StoryMemPipeline:
 
         lora_path = lora_path or self.m2v_lora_path
 
-        self._mi2v_pipeline = WanMI2V(
+        self._mi2v_pipeline = WanTI2V(
             config=config,
             checkpoint_dir=self.i2v_checkpoint_dir,
             lora_weight_path=lora_path,
