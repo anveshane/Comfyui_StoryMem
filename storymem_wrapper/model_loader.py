@@ -217,7 +217,7 @@ class StoryMemModelManager:
         except Exception as e:
             logger.error(f"Failed to load StoryMem pipeline: {e}")
             logger.warning("Returning configuration dict without pipeline")
-            return self._create_config_dict(t2v_model, i2v_lora, m2v_lora)
+            return self._create_config_dict(t2v_model, i2v_model, m2v_lora)
 
     def _create_config_dict(self, t2v_model: str, i2v_model: str, m2v_lora: str) -> Dict[str, Any]:
         """Create a configuration dictionary without actual pipeline (fallback mode)."""
