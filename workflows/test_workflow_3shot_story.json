@@ -1,0 +1,359 @@
+{
+  "last_node_id": 8,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "StoryMemModelLoader",
+      "pos": [50, 50],
+      "size": [400, 240],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "models",
+          "type": "STORYMEM_MODELS",
+          "links": [1, 2, 3],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemModelLoader"
+      },
+      "widgets_values": [
+        "Wan2.2-T2V-A14B",
+        "Wan2.2-I2V-A14B",
+        "MI2V",
+        "auto",
+        true,
+        false
+      ]
+    },
+    {
+      "id": 2,
+      "type": "StoryMemMemoryBuffer",
+      "pos": [50, 350],
+      "size": [350, 120],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "links": [4, 5, 6],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemMemoryBuffer"
+      },
+      "widgets_values": [
+        10,
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "type": "StoryMemFirstShot",
+      "pos": [500, 50],
+      "size": [400, 420],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "models",
+          "type": "STORYMEM_MODELS",
+          "link": 1
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "links": [7, 8],
+          "slot_index": 0
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "links": [9],
+          "slot_index": 1
+        },
+        {
+          "name": "last_frame",
+          "type": "IMAGE",
+          "links": [10],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemFirstShot"
+      },
+      "widgets_values": [
+        "A young woman walks through a bustling city street at sunset, cinematic lighting, golden hour",
+        25,
+        832,
+        480,
+        42,
+        50,
+        7.5,
+        true,
+        3
+      ]
+    },
+    {
+      "id": 4,
+      "type": "StoryMemContinuationShot",
+      "pos": [1000, 50],
+      "size": [400, 440],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "models",
+          "type": "STORYMEM_MODELS",
+          "link": 2
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "link": 9
+        },
+        {
+          "name": "first_frame",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "links": [11, 12],
+          "slot_index": 0
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "links": [13],
+          "slot_index": 1
+        },
+        {
+          "name": "last_frame",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemContinuationShot"
+      },
+      "widgets_values": [
+        "She stops at a café window, looking at her reflection, contemplative mood, warm lighting",
+        "MI2V",
+        25,
+        123,
+        50,
+        7.5,
+        false,
+        832,
+        480,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "type": "StoryMemContinuationShot",
+      "pos": [1500, 50],
+      "size": [400, 440],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "models",
+          "type": "STORYMEM_MODELS",
+          "link": 3
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "links": [14],
+          "slot_index": 0
+        },
+        {
+          "name": "memory",
+          "type": "STORYMEM_MEMORY",
+          "links": [],
+          "slot_index": 1
+        },
+        {
+          "name": "last_frame",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemContinuationShot"
+      },
+      "widgets_values": [
+        "Inside the café, warm lighting illuminates the cozy interior, people chatting, atmospheric",
+        "M2V",
+        25,
+        456,
+        50,
+        7.5,
+        true,
+        832,
+        480,
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "type": "StoryMemVideoCombine",
+      "pos": [2000, 50],
+      "size": [300, 180],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video1",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "video2",
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "name": "video3",
+          "type": "IMAGE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "combined_video",
+          "type": "IMAGE",
+          "links": [15],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StoryMemVideoCombine"
+      }
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "pos": [2400, 50],
+      "size": [400, 450],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 8,
+      "type": "PreviewImage",
+      "pos": [500, 550],
+      "size": [400, 350],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 8
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "title": "Preview Shot 1"
+    },
+    {
+      "id": 9,
+      "type": "PreviewImage",
+      "pos": [1000, 550],
+      "size": [400, 350],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "title": "Preview Shot 2"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 3, 0, "STORYMEM_MODELS"],
+    [2, 1, 0, 4, 0, "STORYMEM_MODELS"],
+    [3, 1, 0, 5, 0, "STORYMEM_MODELS"],
+    [4, 2, 0, 3, 1, "STORYMEM_MEMORY"],
+    [5, 2, 0, 4, 1, "STORYMEM_MEMORY"],
+    [6, 2, 0, 5, 1, "STORYMEM_MEMORY"],
+    [7, 3, 0, 6, 0, "IMAGE"],
+    [8, 3, 0, 8, 0, "IMAGE"],
+    [9, 3, 1, 4, 1, "STORYMEM_MEMORY"],
+    [10, 3, 2, 4, 2, "IMAGE"],
+    [11, 4, 0, 6, 1, "IMAGE"],
+    [12, 4, 0, 9, 0, "IMAGE"],
+    [13, 4, 1, 5, 1, "STORYMEM_MEMORY"],
+    [14, 5, 0, 6, 2, "IMAGE"],
+    [15, 6, 0, 7, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8,
+      "offset": [-20, 0]
+    }
+  },
+  "version": 0.4,
+  "workflow_metadata": {
+    "name": "StoryMem 3-Shot Story Test",
+    "description": "Test workflow for issue #3 fix: Generates a 3-shot story with memory continuity",
+    "author": "ComfyUI StoryMem",
+    "version": "1.0.0",
+    "tags": ["storymem", "test", "multi-shot", "memory", "video-generation"]
+  }
+}
