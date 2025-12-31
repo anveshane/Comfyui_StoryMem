@@ -1,4 +1,9 @@
-from hpsv3 import HPSv3RewardInferencer
+try:
+    from hpsv3 import HPSv3RewardInferencer
+    HAS_HPSV3 = True
+except ImportError:
+    HAS_HPSV3 = False
+    HPSv3RewardInferencer = None
 import os
 import time
 import glob
@@ -303,7 +308,7 @@ def _read_video_opencv(video_path: str) -> Tuple[torch.Tensor, List[int]]:
 def save_keyframes(video_path, frame_sim_thereshold = MIN_FRAME_SIMILARITY, frame_sim_func = get_frame_sim_clip, memory_cmp = True):
     st = time.time()
     frames, timestamps = read_video(video_path)
-    quality_model = HPSv3RewardInferencer(device="cuda")
+    quality_model = HPSv3RewardInferencer(device="cuda") if HAS_HPSV3 else None
     while True:
         keyframe_indices = extract_keyframe_indices(frames, quality_model, frame_sim_thereshold, frame_sim_func)
         # print(f"? {keyframe_indices}")
